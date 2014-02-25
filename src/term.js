@@ -2417,6 +2417,11 @@ Terminal.prototype.keyDown = function(ev) {
       break;
     // return/enter
     case 13:
+     if (ev.ctrlKey) { // ctrl-enter is useful
+       key = "\x1b[27;5;13~";
+       break;
+      }      
+
       key = '\r';
       break;
     // escape
@@ -2430,6 +2435,7 @@ Terminal.prototype.keyDown = function(ev) {
         //key = '\x8fD'; // SS3 as 0x8f for 8-bit
         break;
       }
+      
       key = '\x1b[D';
       break;
     // right-arrow
@@ -2556,6 +2562,33 @@ Terminal.prototype.keyDown = function(ev) {
     case 123:
       key = '\x1b[24~';
       break;
+
+    // extra keys I find useful
+    case 220: //backslash
+      if (ev.ctrlKey) { 
+          key = "\x1c";
+          break;
+      }
+    case 222:  // single quote
+      if (ev.ctrlKey) { 
+          key = "\x1b[27;5;39~";
+          break;
+      }
+
+    case 186:  // colon
+      if (ev.ctrlKey) { 
+          key = "\x1b[27;5;59~"
+          break;
+      }
+
+    case 47:  // slash (emacs undo...)
+      if (ev.ctrlKey) { 
+          key = "\x1f"
+          break;
+      }
+      
+
+      
     default:
       // a-z and space
       if (ev.ctrlKey) {
