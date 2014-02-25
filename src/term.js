@@ -2418,6 +2418,8 @@ Terminal.prototype.keyDown = function(ev) {
     // return/enter
     case 13:
      if (ev.ctrlKey) { // ctrl-enter is useful
+       // this seems to only work with TERM set to
+       // xterm or xterm-256colors
        key = "\x1b[27;5;13~";
        break;
       }      
@@ -2581,7 +2583,7 @@ Terminal.prototype.keyDown = function(ev) {
           break;
       }
 
-    case 47:  // slash (emacs undo...)
+    case 191:  // slash (emacs undo...)
       if (ev.ctrlKey) { 
           key = "\x1f"
           break;
